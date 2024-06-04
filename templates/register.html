@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration</title>
+	<style>
+		/* Global styles */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background-image: url('background.jpg');
+			background-size: cover;
+			background-position: center;
+		}
+
+		/* Container for image and form */
+		.container {
+			display: flex;
+			width: 90%;
+			max-width: 1200px;
+		}
+
+		/* Styles applied to both image and form containers */
+		.image-container,
+		.form-container {
+			flex: 1;
+			/* Makes both sections occupy half the width */
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			transition: transform 0.3s;
+			border: 2px solid #ddd;
+			/* Add a subtle border */
+		}
+
+		.image-container:hover .image,
+		.form-container:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+			/* Enhance hover shadow */
+		}
+
+		/* Image container styles */
+		.image-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.image {
+			width: 100%;
+			/* Ensures image fills container width */
+			max-width: 600px;
+			/* Set a maximum width for responsiveness */
+			height: auto;
+			/* Maintain aspect ratio */
+			border-radius: 8px;
+		}
+
+		/* Form container styles */
+		.form-container {
+			display: flex;
+			flex-direction: column;
+			/* Stacks form elements vertically */
+		}
+
+		h2 {
+			color: #6AB73B;
+			text-align: center;
+			margin-bottom: 20px;
+			font-size: 1.2em;
+			/* Increase title size slightly */
+		}
+
+		label {
+			display: block;
+			margin-bottom: 8px;
+			color: #6AB73B;
+			font-weight: bold;
+			/* Make labels bolder */
+			text-transform: uppercase;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: calc(100% - 20px);
+			padding: 8px;
+			margin-bottom: 16px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			background-color: #f5f5f5;
+			/* Lighter background for better readability */
+		}
+
+		button {
+			background-color: #6AB73B;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-weight: bold;
+			transition: background-color 0.3s;
+			margin-top: auto;
+			/* Moves button to bottom */
+			width: calc(100% - 20px);
+			display: inline-block;
+			background-image: linear-gradient(to right, #6AB73B 0%, #299d00 50%);
+			/* Add a gradient for visual appeal */
+		}
+
+		button:hover {
+			background-color: #299d00;
+			/* Consistent hover color */
+		}
+
+		/* Feedback messages */
+		.success-message,
+		.error-message {
+			padding: 10px;
+			border-radius: 3px;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.success-message {
+			background-color: #dff0d8;
+			/* Light green for success */
+
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="image-container">
+			<img class="image" src="/assets/img/2148194015.jpg" alt="Image">
+		</div>
+		<div class="form-container">
+
+			<div>
+				<div class="success-message">
+					<p>Registration Successful!</p>
+				</div>
+			</div>
+
+			<h2>Registration</h2>
+			<form action="" method="post" role="form" >
+				<label for="fullname">FullName:</label>
+				<input  type="text" id="fullname" name="fullname"
+					placeholder="Enter your FullName" required>
+
+				<label for="username">Username:</label>
+				<input  type="text" id="username" name="username"
+					placeholder="Enter your Username" required>
+
+				<label for="password">Password:</label>
+				<input  type="password" id="password" name="password"
+					placeholder="Enter your Password" required>
+
+				<button type="submit">Register</button>
+			</form>
+			<div  class="error-message">Username is Taken</div>
+			<div class="form-footer">Already have an account? <a href="./login">Login </a>here.</div>
+		</div>
+	</div>
+</body>
+
+</html>

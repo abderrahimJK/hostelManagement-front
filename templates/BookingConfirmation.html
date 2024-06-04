@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirmation de Réservation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .card-header {
+            background-color: #7ab730;
+            color: white;
+            border-bottom: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .card-title {
+            color: #7ab730;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .card-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .card-text strong {
+            color: #7ab730;
+        }
+        .highlight {
+            background-color: #f0f8e7;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .btn-custom {
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        .btn-custom-pay-now {
+            background-color: #7ab730;
+            color: white;
+        }
+        .btn-custom-pay-now:hover {
+            background-color: #699e2a;
+            opacity: 0.9;
+        }
+        .btn-custom-pay-arrival {
+            background-color: #343a40;
+            color: white;
+        }
+        .btn-custom-pay-arrival:hover {
+            background-color: #2d3237;
+            opacity: 0.9;
+        }
+        @media (max-width: 576px) {
+            .card-header, .card-title, .card-text {
+                text-align: center;
+            }
+            .btn-custom {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Confirmation de Réservation
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Merci pour votre réservation !</h5>
+            <div class="highlight">
+                <p class="card-text">Nous sommes ravis de confirmer votre réservation avec les détails suivants :</p>
+                <p class="card-text"><strong>Destination :</strong> <span th:text="${bookingForm.destination}">Destination</span></p>
+                <p class="card-text"><strong>Date de départ :</strong> <span th:text="${bookingForm.departureDate}">Date de départ</span></p>
+                <p class="card-text"><strong>Date de retour :</strong> <span th:text="${bookingForm.returnDate}">Date de retour</span></p>
+                <p class="card-text"><strong>Code de réservation :</strong> #162809290899<br> Merci de conserver ce code pour référence.</p>
+            </div>
+            <p class="card-text"><strong>Note :</strong> Notre guide professionnel sera à votre disposition pour vous offrir une expérience inoubliable tout au long de votre tour.</p>
+            
+            <!-- Payment Method Options -->
+            <div class="text-center mt-4">
+                <button type="button" class="btn-custom btn-custom-pay-now mr-3" onclick="payNow()">Payer Maintenant</button>
+                <button type="button" class="btn-custom btn-custom-pay-arrival" onclick="payOnArrival()">Payer à l'Arrivée</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function payNow() {
+        // Add logic to handle immediate payment
+        alert('Payer Maintenant clicked');
+    }
+
+    function payOnArrival() {
+        // Add logic to handle payment on arrival
+        alert('Payer à l\'Arrivée clicked');
+    }
+</script>
+</body>
+</html>
