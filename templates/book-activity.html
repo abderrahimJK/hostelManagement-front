@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotels</title>
+    <meta charset="utf-8">
+    <title>Explore Morocco</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link href="/assetsimg/favicon.ico" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i class="fa fa-envelope mr-2"></i>etudiantsde@univ.com</p>
+                        <p class="text-body px-3">|</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+212 612345678</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-primary pl-3" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="/" class="navbar-brand">
+                    <h3 class="m-0 text-primary"><span class="text-dark">Moroccan</span>MOSAIC</h3>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <nav class="navbar-nav ml-auto py-0">
+                        <a href="/index.html" class="nav-item nav-link active">Acceuil</a>
+                        <a href="/about" class="nav-item nav-link">À propos</a>
+                        <a href="/service" class="nav-item nav-link">Services</a>
+                        <a href="/package" class="nav-item nav-link">Forfaits touristiques</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="/blog" class="dropdown-item">Grille de blog</a>
+                                <a href="/single" class="dropdown-item">Détail du blog</a>
+                                <a href="/destination" class="dropdown-item">Destination</a>
+                                <a href="/testimonial" class="dropdown-item">Témoignage</a>
+                                <div class="dropdown-item">
+                                    <div class="span-text">
+                                        <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
+                                                <font color=black>Déconnexion</font>
+                                            </a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/contact" class="nav-item nav-link">Contact</a>
+                        <div class="nav-item">
+                            <a href="../templates/payement.html" class="nav-link">
+                                <i class="fa fa-shopping-basket"></i>
+                                <span class="badge badge-primary" id="basket-count">0</span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Booking Form Start -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Book an activity</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="guests">Number of Guests</label>
+                                <input type="number" class="form-control" id="guests" placeholder="Enter number of guests">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block" onclick="submitForm(event)">Book Now</button>
+
+                            <script>
+                               async function submitForm(event) {
+                                    event.preventDefault(); // Prevent the default form submission behavior
+                                    // Get the form values
+                                    const guests = document.getElementById('guests').value;
+                                    const price=Number(guests)*100;
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const activityId = urlParams.get('id');
+                                    // Create an object with the form data
+                                    const formData = {
+                                        numberOfPersons: Number(guests),
+                                        totalPrice: Number(guests) * price,
+                                        activities:[
+                                            {
+                                                id: activityId
+                                            }
+                                        ]
+                                        ,
+                                        user: {
+                                            id: 1
+                                        }
+                                    };
+                                    
+                                    // Make a POST request to the backend API endpoint
+                                    try {
+                                        const response = await fetch('http://localhost:8090/booking/save', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(formData)
+                                        
+                                        }).then(response => {
+                                            if (response.ok) {
+                                                Swal.fire(
+                                                    'Success!',
+                                                    'Booking successful',
+                                                    'success'
+                                                ).then(() => {
+                                                    const basketCount = document.getElementById('basket-count');
+                                                    basketCount.textContent = Number(basketCount.textContent) + 1;
+                                                    window.location.href = '../templates/payement.html';
+                                                });
+
+                                                
+                                            } else {
+                                                Swal.fire(
+                                                    'Error!',
+                                                    'Booking failed',
+                                                    'error'
+                                                );
+                                            }})
+                                    } catch (error) {
+                                        console.error('Error:', error);
+                                    }
+                                }
+                            </script>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Activity Information</h3>
+                    </div>
+                    <script>
+                        function fetchHotelInformation() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const activityId = urlParams.get('id');
+
+                            // Make an AJAX request to fetch the hotel information using the hotel ID
+                            fetch(`http://localhost:8090/activity/${activityId}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById('activity-image').src = "data:image/png;base64,"+data.image || 'https://via.placeholder.com/150';
+                                    document.getElementById('activity-name').textContent = data.name;
+                                    document.getElementById('activity-location').textContent = data.location;
+                                    document.getElementById('activity-description').textContent = data.description;
+                                    document.getElementById('activity-price').textContent = data.price ;
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        }
+
+                        // Call the function to fetch hotel information when the page loads
+                        window.addEventListener('DOMContentLoaded', fetchHotelInformation);
+                    </script>
+                    <div class="card-body">
+                        <img src="" class="img-fluid" id="activity-image" alt="Image">
+                        <h5 class="card-title" id="activity-name"></h5>
+                        <h5 class="card-title" id="activity-location"></h5>
+                        <p class="card-text" id="activity-description"></p>
+                        <p class="card-text" >Price: <b id="restau-price">100</b> MAD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking Form End -->
+</body>
+</html>

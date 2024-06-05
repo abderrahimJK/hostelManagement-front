@@ -156,6 +156,12 @@
                             </div>
                         </div>
                         <a href="/contact" class="nav-item nav-link">Contact</a>
+                        <div class="nav-item">
+                            <a href="../templates/payement.html" class="nav-link">
+                                <i class="fa fa-shopping-basket"></i>
+                                <span class="badge badge-primary" id="basket-count">0</span>
+                            </a>
+                        </div>
                     </nav>
                 </div>
             </nav>
@@ -210,6 +216,13 @@
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-4 mb-3 mb-md-0">
+                                    <select class="custom-select px-4" style="height: 47px;" name="type">
+                                        <option selected disabled>Type</option>
+                                        <option value="hotel">Hotel</option>
+                                        <option value="restaurant">Restaurant</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
                                     <select class="custom-select px-4" style="height: 47px;" name="destination">
                                         <option selected disabled>Destination</option>
                                         <option value="Tanger">Tanger</option>
@@ -229,22 +242,17 @@
                                         <option value="Imlil">Imlil</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3 mb-md-0">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="Date" class="form-control p-4 datetimepicker-input"
-                                               placeholder="Date de départ" name="departureDate" data-target="#date1" data-toggle="datetimepicker" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3 mb-md-0">
-                                    <div class="date" id="date2" data-target-input="nearest">
-                                        <input type="Date" class="form-control p-4 datetimepicker-input"
-                                               placeholder="Date de retour" name="returnDate" data-target="#date2" data-toggle="datetimepicker" />
-                                    </div>
-                                </div>
+                            
                             </div>
                         </div>
                         <div class="col-md-2 mt-2 mt-md-0">
-                            <button class="btn btn-primary btn-block" type="submit" style="height: 47px;">Soumettre</button>
+                            <script>
+                                function showHotels() {
+                                    var destination = document.querySelector('select[name="destination"]').value;
+                                    window.location.href='./hotels.html?destination=' + destination;
+                                }
+                            </script>
+                            <button class="btn btn-primary btn-block" type="button" style="height: 47px;" onclick="showHotels()">Chercher</button>
                         </div>
                     </div>
                 </form>
@@ -258,8 +266,8 @@
                 <span style="font-size: 1.2rem;">Réserver pour des tours à ces villes au Maroc !</span>
                 <span style="font-size: 1.2rem;">Réserver aussi des restaurants et des hôtels au Maroc !</span>
             </p>
-            <button type="button" onclick="window.location.href='/reservation_hotel.html'">Réserver un Hôtel</button>
-            <button type="button" onclick="window.location.href='/reservation_restaurant.html'">Réserver un Restaurant</button>
+            <button type="button" onclick="window.location.href='./hotels.html'">Réserver un Hôtel</button>
+            <button type="button" onclick="window.location.href='./restaurant.html'">Réserver un Restaurant</button>
         </div>
     </div>
 
@@ -344,63 +352,11 @@
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Destination</h6>
-                <h1>Explorez Top Destination</h1>
+                <h1>Explorez Top Activities</h1>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/cavingAgadir.png" alt="" style="height: 400px;">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Agadir</h5>
-                            <span>le caving</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/ifrane.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Ifran</h5>
-                            <span>le skiing</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/montagne.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">le Haut Atlas</h5>
-                            <span>Montagne</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/surf.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white"> Dakhla</h5>
-                            <span>Surf</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/sanboarding.jpeg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Merzouga</h5>
-                            <span>Sandboarding</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="/assets/img/camping.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">la côte atlantique</h5>
-                            <span>Camping</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="row activity-data" >
+                <script src="../assets/js/acitvities.js"></script>
+                
             </div>
         </div>
     </div>
@@ -449,6 +405,10 @@
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Forfaits</h6>
                 <h1>Parfaits Forfaits Touristiques</h1>
             </div>
+            <div class="row hotel-data">
+                <script src="../assets/js/hotels.js">
+                    
+                </script>
             <div class="row" id="touristicPlansContainer">
             </div>
         </div>

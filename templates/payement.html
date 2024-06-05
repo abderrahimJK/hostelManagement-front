@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotels</title>
+    <meta charset="utf-8">
+    <title>Explore Morocco</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link href="/assetsimg/favicon.ico" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i class="fa fa-envelope mr-2"></i>etudiantsde@univ.com</p>
+                        <p class="text-body px-3">|</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+212 612345678</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-primary pl-3" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="/" class="navbar-brand">
+                    <h3 class="m-0 text-primary"><span class="text-dark">Moroccan</span>MOSAIC</h3>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <nav class="navbar-nav ml-auto py-0">
+                        <a href="/index.html" class="nav-item nav-link active">Acceuil</a>
+                        <a href="/about" class="nav-item nav-link">À propos</a>
+                        <a href="/service" class="nav-item nav-link">Services</a>
+                        <a href="/package" class="nav-item nav-link">Forfaits touristiques</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="/blog" class="dropdown-item">Grille de blog</a>
+                                <a href="/single" class="dropdown-item">Détail du blog</a>
+                                <a href="/destination" class="dropdown-item">Destination</a>
+                                <a href="/testimonial" class="dropdown-item">Témoignage</a>
+                                <div class="dropdown-item">
+                                    <div class="span-text">
+                                        <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
+                                                <font color=black>Déconnexion</font>
+                                            </a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/contact" class="nav-item nav-link">Contact</a>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Payment Method Start -->
+    <div class="row">
+        <div class="container mt-5 col-md-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2 class="text-center mb-4">Select Payment Method</h2>
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method:</label>
+                        <select class="form-control" id="paymentMethod" onchange="handlePaymentMethod()">
+                            <option value="cash">Cash</option>
+                            <option value="card">Card</option>
+                        </select>
+                    </div>
+                    <div id="cashPayment" class="text-center">
+                        <button class="btn btn-primary" onclick="redirectToCongratulation()">Pay with Cash</button>
+                    </div>
+                    <div id="cardPayment" style="display: none;">
+                        <form>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number:</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number">
+                            </div>
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date:</label>
+                                <input type="text" class="form-control" id="expiryDate" placeholder="Enter expiry date">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV:</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Pay with Card</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handlePaymentMethod() {
+                var paymentMethod = document.getElementById("paymentMethod").value;
+                if (paymentMethod === "cash") {
+                    document.getElementById("cashPayment").style.display = "block";
+                    document.getElementById("cardPayment").style.display = "none";
+                } else if (paymentMethod === "card") {
+                    document.getElementById("cashPayment").style.display = "none";
+                    document.getElementById("cardPayment").style.display = "block";
+                }
+            }
+
+            function redirectToCongratulation() {
+                document.getElementById("congratulationPage").style.display = "block";
+                window.location.href = "/congratulation.html";
+            }
+        </script>
+        <!-- Booking Items Start -->
+        <div class="container mt-5 col-md-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2 class="text-center mb-4">Booking Items</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="title"></h5>
+                            <p class="card-text" id="check-in"></p>
+                            <p class="card-text" id="check-out"></p>
+                            <p class="card-text" id="price"></p>
+                            <hr>
+                            <h5 class="card-title" id="title-restau"></h5>
+                            <p class="card-text" id="cuisine"></p>
+                            <p class="card-text" id="location"></p>
+                            <p class="card-text" id="price-restau"></p>
+                            <hr>
+                            <h5 class="card-title" id="title-activity"></h5>
+                            <p class="card-text" id="location-activity"></p>
+                            <p class="card-text" id="description-activity"></p>
+                            <p class="card-text" id="price-activity"></p>
+
+                            <script>
+                                // Make an AJAX request to the backend to get the booking item information
+                                function getBookingItem() {
+                                    // Replace 'backend-url' with the actual URL of your backend API
+                                    fetch('http://localhost:8090/booking/user/1')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log(data);
+                                            data.forEach(element => {
+                                                if(element.hotels.length>0){
+                                                    document.getElementById('title').textContent="Hotel "+element.hotels[0].name;
+                                                    document.getElementById('check-in').textContent = 'Check-in Date: ' + element.startDate;
+                                                    document.getElementById('check-out').textContent = 'Check-out Date: ' + element.endDate;
+                                                    document.getElementById('price').textContent = 'Total Price: ' + element.totalPrice+" MAD";
+                                                }
+                                                
+                                                if(element.restaurants.length>0){
+                                                    document.getElementById('title-restau').textContent=element.restaurants[0].name;
+                    
+                                                    document.getElementById('cuisine').textContent = 'Cuisine: ' + element.restaurants[0].cuisine;
+                                                    document.getElementById('location').textContent = 'Location: ' + element.restaurants[0].location;
+                                                    document.getElementById('price-restau').textContent = 'Total Price: ' + element.totalPrice +" MAD";
+
+                                                }
+                                                if(element.activities.length>0){
+                                                    document.getElementById('title-activity').textContent=element.activities[0].name;
+                                                    document.getElementById('location-activity').textContent = 'Location: ' + element.activities[0].location;
+                                                    document.getElementById('description-activity').textContent = 'Description: ' + element.activities[0].description;
+                                                    document.getElementById('price-activity').textContent = 'Total Price: ' + element.totalPrice+" MAD";
+                                                }});
+                                                
+                                            
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                }
+
+                                // Call the function to get the booking item information
+                                getBookingItem();
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>>
+        <!-- Booking Items End -->
+    </div>
+</body>
+</html>
