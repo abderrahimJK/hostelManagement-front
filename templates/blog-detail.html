@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+<title>Explore Morocco</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="Free HTML Templates" name="keywords">
+	<meta content="Free HTML Templates" name="description">
+
+	<!-- Favicon -->
+	<link href="/assets/img/favicon.ico" rel="icon">
+
+	<!-- Google Web Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+	<!-- Libraries Stylesheet -->
+	<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+	<link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+	<!-- Customized Bootstrap Stylesheet -->
+	<link href="/assets/css/style.css" rel="stylesheet">
+	<style>
+		.span-text {
+			color: white;
+		}
+
+		.span-text a {
+			color: white;
+			text-decoration: none;
+			cursor: pointer;
+			/* Add cursor pointer */
+		}
+
+		.span-text a:hover {
+			color: lightgray;
+			/* Change color on hover */
+		}
+	</style>
+</head>
+
+<body>
+    <script src="verify.js"></script>
+
+    <script src="../assets/js/verify.js"></script>
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light pt-3 d-none d-lg-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+					<div class="d-inline-flex align-items-center">
+						<p><i class="fa fa-envelope mr-2"></i>etudiantsde@univ.com</p>
+						<p class="text-body px-3">|</p>
+						<p><i class="fa fa-phone-alt mr-2"></i>+212 612345678</p>
+					</div>
+				</div>
+				<div class="col-lg-6 text-center text-lg-right">
+					<div class="d-inline-flex align-items-center">
+						<a class="text-primary px-3" href="">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a class="text-primary px-3" href="">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a class="text-primary px-3" href="">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+						<a class="text-primary px-3" href="">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<a class="text-primary pl-3" href="">
+							<i class="fab fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Topbar End -->
+
+
+	<!-- Navbar Start -->
+	<div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="/" class="navbar-brand">
+                    <h3 class="m-0 text-primary"><span class="text-dark">Moroccan</span>MOSAIC</h3>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <nav class="navbar-nav ml-auto py-0">
+                        <a href="./index.html" class="nav-item nav-link ">Acceuil</a>
+                        <a href="./hotels.html" class="nav-item nav-link">Hotels</a>
+                        <a href="./restaurant.html" class="nav-item nav-link">Restaurant</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="./blog.html" class="dropdown-item">blogs</a>
+								<a href="./service.html" class="dropdown-item">Services</a>
+								<a href="./about.html" class="dropdown-item">A propos</a>
+								<a href="./contact.html" class="dropdown-item">Contact</a>
+                                <a href="./booking.html" class="dropdown-item">booking</a>
+
+                                <div class="dropdown-item">
+                                    <div class="span-text">
+                                        <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
+                                                <font color=black>Déconnexion</font>
+                                            </a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="./contact.html" class="nav-item nav-link">Contact</a>
+						<div class="nav-item">
+                            <a href="../templates/payement.html" class="nav-link">
+                                <i class="fa fa-shopping-basket"></i>
+                                <span class="badge badge-primary" id="basket-count">0</span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Blog Content Start -->
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Blog Post Start -->
+                <div class="card mb-4">
+                    <img src="" class="card-img-top" height="300" alt="Blog Image">
+                    <div class="card-body">
+                        <h2 class="card-title">Blog Title</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc. Sed vitae semper nunc. Nulla facilisi. Sed nec nunc auctor, aliquet nunc nec, lacinia nunc. Nulla facilisi. Sed nec nunc auctor, aliquet nunc nec, lacinia nunc.</p>
+                    </div>
+                </div>
+                <script>
+                    function fetchData(){
+                        // Fetch blog info from backend using id from url
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const blogId = urlParams.get('id');
+
+                        fetch(`http://localhost:8090/blog/${blogId}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Update the blog content dynamically
+                                cardImage=document.querySelector('.card-img-top');
+                                const blogTitle = document.querySelector('.card-title');
+                                const blogText = document.querySelector('.card-text');
+
+                                blogTitle.textContent = data.title;
+                                blogText.textContent = data.content;
+                                cardImage.src = `data:image/png;base64,${data.image}`;
+                                console.log(data);
+                                dataComments=data.comments;
+                                dataComments.forEach(comment => {
+                                    const commentElement = document.createElement('div');
+                                    commentElement.classList.add('media', 'mb-4');
+                                    commentElement.innerHTML = `
+                    
+                                            <div class="media-body">
+                                                <div class="d-flex">
+                                                <h5 class="mt-0">User 1:  </h5>
+                                                <p>${comment.content}</p>
+                                                </div>
+                                            </div>
+                                    
+                                    `
+                                    document.querySelector('.comment-data').appendChild(commentElement);
+                                });
+
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    };
+                    fetchData();
+                    
+                </script>
+                
+                <!-- Blog Post End -->
+                <!-- Comments Start -->
+                <div class="card mb-4">
+                    <div class="card-body ">
+                        <h3 class="card-title">Comments</h3>
+                        <div class="comment-data">
+                            <!-- Comments will be dynamically added here -->
+                        </div>
+                        <!-- Add Comment Start -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Add Comment</h5>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Comment</label>
+                                        <textarea class="form-control" id="comment" rows="3" placeholder="Enter your comment"></textarea>
+                                    </div>
+                                    <button type="submit" onclick="submitComment(event)" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Add Comment End -->
+                        <script>
+                            // Function to handle form submission
+                            function submitComment(event) {
+                                const urlParams = new URLSearchParams(window.location.search);
+                                const blogId = urlParams.get('id');
+                                let blogData={
+                                    id:blogId,
+                                    comments:[
+                                    ]
+                                }
+
+
+                                fetch(`http://localhost:8090/blog/${blogId}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    blogData = data;
+
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+
+
+                                event.preventDefault();
+                                const comment = document.getElementById('comment').value;
+                                
+                            
+                                fetch('http://localhost:8090/comment/save', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({content:comment, blog:{id:blogId}, user:{id:1}})
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    savedComment = data;
+                                    const commentElement = document.createElement('div');
+                                    commentElement.classList.add('media', 'mb-4');
+                                    commentElement.innerHTML = `
+                    
+                                            <div class="media-body">
+                                                <div class="d-flex">
+                                                <h5 class="mt-0">User 1:  </h5>
+                                                <p>${comment}</p>
+                                                </div>
+                                            </div>
+                                    
+                                    `
+                                    document.querySelector('.comment-data').appendChild(commentElement);
+                                    comment.value = '';
+
+                                    
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                
+                            }
+
+
+                        
+                        </script>
+                    </div>
+                </div>
+                <!-- Comments End -->
+            </div>
+            <div class="col-lg-4">
+                <!-- Sidebar Start -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sidebar</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+            </div>
+        </div>
+    </div>
+    <!-- Blog Content End -->
+	
+
+
+</body>
+</html>
