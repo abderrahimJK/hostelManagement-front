@@ -44,6 +44,9 @@
 </head>
 
 <body>
+
+    <script src="../assets/js/verify.js"></script>	
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light pt-3 d-none d-lg-block">
 		<div class="container">
@@ -165,78 +168,9 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="row pb-3 rowdata">
-						<div class="col-md-6 mb-4 pb-2">
-							<div class="blog-item">
-								<div class="position-relative">
-									<img class="img-fluid w-100" src="/assets/img/voyMaroc.jpeg" alt="">
-									<div class="blog-date">
-										<h6 class="font-weight-bold mb-n1">01</h6>
-										<small class="text-white text-uppercase">Jan</small>
-									</div>
-								</div>
-								<div class="bg-white p-4">
-									<div class="d-flex mb-2">
-										<a class="text-primary text-uppercase text-decoration-none"
-											href="">user@1234</a>
-										<span class="text-primary px-2">|</span>
-										<a class="text-primary text-uppercase text-decoration-none" href="">Voyage au
-											Maroc</a>
-									</div>
-									<a class="h5 m-0 text-decoration-none" href="">Ce blog est une mine d'or pour les
-										voyageurs en quête d'aventures au Maroc ! Les guides détaillés et les récits
-										d'expériences personnelles m'ont été d'une grande aide pour planifier mon
-										voyage. Je recommande vivement</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 mb-4 pb-2">
-							<div class="blog-item">
-								<div class="position-relative">
-									<img class="img-fluid w-100" src="/assets/img/cuisiner.jpeg" alt="">
-									<div class="blog-date">
-										<h6 class="font-weight-bold mb-n1">15</h6>
-										<small class="text-white text-uppercase">Mai</small>
-									</div>
-								</div>
-								<div class="bg-white p-4">
-									<div class="d-flex mb-2">
-										<a class="text-primary text-uppercase text-decoration-none"
-											href="">user@0987</a>
-										<span class="text-primary px-2">|</span>
-										<a class="text-primary text-uppercase text-decoration-none" href="">Cuisine
-											Marocaine</a>
-									</div>
-									<a class="h5 m-0 text-decoration-none" href="">Ce blog est une véritable source
-										d'inspiration pour tous les amateurs de cuisine marocaine. Les recettes sont
-										authentiques et délicieuses, et les instructions sont faciles à suivre. Mes
-										repas ont pris une toute nouvelle saveur depuis que j'ai découvert ce blog !</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 mb-4 pb-2">
-							<div class="blog-item">
-								<div class="position-relative">
-									<img class="img-fluid w-100" src="/assets/img/ourCulture.webp" alt="">
-									<div class="blog-date">
-										<h6 class="font-weight-bold mb-n1">6</h6>
-										<small class="text-white text-uppercase">Juin</small>
-									</div>
-								</div>
-								<div class="bg-white p-4">
-									<div class="d-flex mb-2">
-										<a class="text-primary text-uppercase text-decoration-none"
-											href="">user@5678</a>
-										<span class="text-primary px-2">|</span>
-										<a class="text-primary text-uppercase text-decoration-none" href="">Culture
-											Marocaine</a>
-									</div>
-									<a class="h5 m-0 text-decoration-none" href="">'adore ce blog pour son exploration
-										approfondie de la riche culture marocaine. Les articles sur l'art, la musique et
-										la littérature m'ont permis de mieux comprendre ce magnifique pays et son
-										peuple. Un incontournable pour les passionnés de culture !</a>
-								</div>
-							</div>
-						</div>
+						
+						
+						
 						<script>
 							fetch('http://localhost:8090/blog/all')
 								.then(response => response.json())

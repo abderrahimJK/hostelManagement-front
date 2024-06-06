@@ -44,6 +44,8 @@
 </head>
 
 <body>
+    <script src="verify.js"></script>
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light pt-3 d-none d-lg-block">
 		<div class="container">
@@ -170,6 +172,7 @@
                                         id:1
                                     }
                                 };
+                                console.log(blog);
                                 //image to base 64
                                 const file = document.getElementById('image').files[0];
                                 const reader = new FileReader();

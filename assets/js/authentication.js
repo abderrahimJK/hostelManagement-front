@@ -15,13 +15,19 @@ async function login() {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: params.toString()
-        }).then(
-            data => {return data}
-        );
-
+        })
+        console.log()
+        user=await response.json()
+        localStorage.setItem('user', JSON.stringify(user))
+        
+        
         if (response.status === 200) {
-            console.log(response.json());
-            window.location.href = './home_admin.html';
+            if(user.role==='ADMIN'){
+                window.location.href = './home_admin.html';
+            }
+            else{
+                window.location.href = './index.html';
+            }
         } else if (response.status === 401) {
             const p = document.querySelector('#error-message')
             p.innerHTML =  'Username or Password incorrect'
@@ -29,6 +35,8 @@ async function login() {
         } else {
             console.log(`Unexpected error: ${response.status}`);
         }
+
+       
     } catch (error) {
         console.error('Error during login:', error);
     }

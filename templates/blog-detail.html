@@ -44,6 +44,9 @@
 </head>
 
 <body>
+    <script src="verify.js"></script>
+
+    <script src="../assets/js/verify.js"></script>
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light pt-3 d-none d-lg-block">
 		<div class="container">
@@ -139,68 +142,135 @@
                     </div>
                 </div>
                 <script>
-                    // Fetch blog info from backend using id from url
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const blogId = urlParams.get('id');
+                    function fetchData(){
+                        // Fetch blog info from backend using id from url
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const blogId = urlParams.get('id');
 
-                    fetch(`http://localhost:8090/blog/${blogId}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update the blog content dynamically
-                            cardImage=document.querySelector('.card-img-top');
-                            const blogTitle = document.querySelector('.card-title');
-                            const blogText = document.querySelector('.card-text');
+                        fetch(`http://localhost:8090/blog/${blogId}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Update the blog content dynamically
+                                cardImage=document.querySelector('.card-img-top');
+                                const blogTitle = document.querySelector('.card-title');
+                                const blogText = document.querySelector('.card-text');
 
-                            blogTitle.textContent = data.title;
-                            blogText.textContent = data.content;
-                            cardImage.src = `data:image/png;base64,${data.image}`;
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
+                                blogTitle.textContent = data.title;
+                                blogText.textContent = data.content;
+                                cardImage.src = `data:image/png;base64,${data.image}`;
+                                console.log(data);
+                                dataComments=data.comments;
+                                dataComments.forEach(comment => {
+                                    const commentElement = document.createElement('div');
+                                    commentElement.classList.add('media', 'mb-4');
+                                    commentElement.innerHTML = `
+                    
+                                            <div class="media-body">
+                                                <div class="d-flex">
+                                                <h5 class="mt-0">User 1:  </h5>
+                                                <p>${comment.content}</p>
+                                                </div>
+                                            </div>
+                                    
+                                    `
+                                    document.querySelector('.comment-data').appendChild(commentElement);
+                                });
+
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    };
+                    fetchData();
+                    
                 </script>
                 
                 <!-- Blog Post End -->
                 <!-- Comments Start -->
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h3 class="card-title">Comments</h3>
-                        <!-- Comment Start -->
-                        <div class="media mb-4">
-                            <img src="/assets/img/user/user-1.jpg" class="mr-3 rounded-circle" alt="User Image">
-                            <div class="media-body">
-                                <h5 class="mt-0">User 1</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
-                            </div>
+                        <div class="comment-data">
+                            <!-- Comments will be dynamically added here -->
                         </div>
-                        <!-- Comment End -->
-                        <!-- Comment Start -->
-                        <div class="media mb-4">
-                            <img src="/assets/img/user/user-2.jpg" class="mr-3 rounded-circle" alt="User Image">
-                            <div class="media-body">
-                                <h5 class="mt-0">User 2</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
-                            </div>
-                        </div>
-                        <!-- Comment End -->
                         <!-- Add Comment Start -->
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Add Comment</h5>
                                 <form>
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="comment">Comment</label>
                                         <textarea class="form-control" id="comment" rows="3" placeholder="Enter your comment"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" onclick="submitComment(event)" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>
+
                         <!-- Add Comment End -->
+                        <script>
+                            // Function to handle form submission
+                            function submitComment(event) {
+                                const urlParams = new URLSearchParams(window.location.search);
+                                const blogId = urlParams.get('id');
+                                let blogData={
+                                    id:blogId,
+                                    comments:[
+                                    ]
+                                }
+
+
+                                fetch(`http://localhost:8090/blog/${blogId}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    blogData = data;
+
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+
+
+                                event.preventDefault();
+                                const comment = document.getElementById('comment').value;
+                                
+                            
+                                fetch('http://localhost:8090/comment/save', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({content:comment, blog:{id:blogId}, user:{id:1}})
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    savedComment = data;
+                                    const commentElement = document.createElement('div');
+                                    commentElement.classList.add('media', 'mb-4');
+                                    commentElement.innerHTML = `
+                    
+                                            <div class="media-body">
+                                                <div class="d-flex">
+                                                <h5 class="mt-0">User 1:  </h5>
+                                                <p>${comment}</p>
+                                                </div>
+                                            </div>
+                                    
+                                    `
+                                    document.querySelector('.comment-data').appendChild(commentElement);
+                                    comment.value = '';
+
+                                    
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                
+                            }
+
+
+                        
+                        </script>
                     </div>
                 </div>
                 <!-- Comments End -->
