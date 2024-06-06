@@ -19,8 +19,8 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link " href="./ahotel.html">Hotels</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="./ahotel.html">Hotels</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./arestaurant.html">Restaurants</a>
@@ -29,7 +29,7 @@
                         <a class="nav-link"  href="./aactivitie.html">Activities</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./aguides.html">Guides</a>
+                        <a class="nav-link active" href="./aguides.html">Guides</a>
                       </li>
                   </ul>
                 </ul>
@@ -49,7 +49,72 @@
             </div>
           </nav>
         
-        <div>        <!-- Add your CRUD content here -->    </div>   
+        <div>
+
+            
+            <div class="container pt-5">
+                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-guide.html';">Add Guide</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Tele</th>            
+                            <th>Email</th>    
+                            <th>Actions</th>      
+
+                        </tr>
+                    </thead>
+                    <tbody id="guideTableBody">
+                        <!-- guides will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <script>
+                // Fetch guides from the server
+                fetch('http://localhost:8090/guide/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        const guideTableBody = document.getElementById('guideTableBody');
+                        data.forEach(guide => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${guide.id}</td>
+                                <td>${guide.name}</td>
+                                <td>${guide.address}</td>
+                                <td>${guide.phone}</td>
+                                <td>${guide.email}</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-guide.html?id=${guide.id}';" >Edit</button>
+                                    <button class="btn btn-danger" onclick="deleteguide(${guide.id});">Delete</button>
+                                </td>
+                                </td>
+                            `;
+                            guideTableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                });
+               //delete guide
+                function deleteguide(id) {
+                 fetch(`http://localhost:8090/guide/delete/${id}`, {
+                      method: 'GET',
+                 })
+                 .then(response => response.json())
+                 .then(data => {
+                      console.log('Success:', data);
+                      window.location.reload();
+                 })
+                 .catch((error) => {
+                      console.error('Error:', error);
+                 });}
+            </script>
+    
+        </div>   
          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>    
          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>    
          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   

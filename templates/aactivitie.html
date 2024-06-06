@@ -19,17 +19,17 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link active" href="./ahotel.html">Hotels</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="./ahotel.html">Hotels</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./arestaurant.html">Restaurants</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./aactivitie.html">Activities</a>
+                        <a class="nav-link active"  href="./aactivitie.html">Activities</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./aguides.html">Guides</a>
+                        <a class="nav-link " href="./aguides.html">Guides</a>
                       </li>
                   </ul>
                 </ul>
@@ -53,56 +53,53 @@
 
             
             <div class="container pt-5">
-                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-hotel.html';">Add Hotel</button>
+                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-activity.html';">Add Activity</button>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Location</th>
-                            <th>Description</th>            
-                            <th>Rating</th>            
-                            <th>Price</th>            
+                            <th>Description</th>   
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="hotelTableBody">
-                        <!-- Hotels will be dynamically added here -->
+                    <tbody id="activityTableBody">
+                        <!-- activitys will be dynamically added here -->
                     </tbody>
                 </table>
             </div>
 
             <script>
-                // Fetch hotels from the server
-                fetch('http://localhost:8090/hotel/all')
+                // Fetch activitys from the server
+                fetch('http://localhost:8090/activity/all')
                     .then(response => response.json())
                     .then(data => {
-                        const hotelTableBody = document.getElementById('hotelTableBody');
-                        data.forEach(hotel => {
+                        console.log(data);
+                        const activityTableBody = document.getElementById('activityTableBody');
+                        data.forEach(activity => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${hotel.id}</td>
-                                <td>${hotel.name}</td>
-                                <td>${hotel.location}</td>
-                                <td>${hotel.description}</td>
-                                <td>${hotel.rating}</td>
-                                <td>${hotel.price}</td>
+                                <td>${activity.id}</td>
+                                <td>${activity.name}</td>
+                                <td>${activity.location}</td>
+                                <td>${activity.description}</td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-hotel.html?id=${hotel.id}';" >Edit</button>
-                                    <button class="btn btn-danger" onclick="deleteHotel(${hotel.id});">Delete</button>
+                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-activity.html?id=${activity.id}';" >Edit</button>
+                                    <button class="btn btn-danger" onclick="deleteactivity(${activity.id});">Delete</button>
                                 </td>
                                 </td>
                             `;
-                            hotelTableBody.appendChild(row);
+                            activityTableBody.appendChild(row);
                         });
                     })
                     .catch(error => {
                         console.error('Error:', error);
                 });
-               //delete Hotel
-                function deleteHotel(id) {
-                 fetch(`http://localhost:8090/hotel/delete/${id}`, {
-                      method: 'DELETE',
+               //delete activity
+                function deleteactivity(id) {
+                 fetch(`http://localhost:8090/activity/delete/${id}`, {
+                      method: 'GET',
                  })
                  .then(response => response.json())
                  .then(data => {

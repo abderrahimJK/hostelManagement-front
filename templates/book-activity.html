@@ -67,17 +67,18 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <nav class="navbar-nav ml-auto py-0">
-                        <a href="/index.html" class="nav-item nav-link active">Acceuil</a>
-                        <a href="/about" class="nav-item nav-link">À propos</a>
-                        <a href="/service" class="nav-item nav-link">Services</a>
-                        <a href="/package" class="nav-item nav-link">Forfaits touristiques</a>
+                        <a href="./index.html" class="nav-item nav-link ">Acceuil</a>
+                        <a href="./hotels.html" class="nav-item nav-link">Hotels</a>
+                        <a href="./restaurant.html" class="nav-item nav-link">Restaurant</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="/blog" class="dropdown-item">Grille de blog</a>
-                                <a href="/single" class="dropdown-item">Détail du blog</a>
-                                <a href="/destination" class="dropdown-item">Destination</a>
-                                <a href="/testimonial" class="dropdown-item">Témoignage</a>
+                                <a href="./blog.html" class="dropdown-item">blogs</a>
+								<a href="./service.html" class="dropdown-item">Services</a>
+								<a href="./about.html" class="dropdown-item">A propos</a>
+								<a href="./contact.html" class="dropdown-item">Contact</a>
+                                <a href="./booking.html" class="dropdown-item">booking</a>
+
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
@@ -87,8 +88,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/contact" class="nav-item nav-link">Contact</a>
-                        <div class="nav-item">
+                        <a href="./contact.html" class="nav-item nav-link">Contact</a>
+						<div class="nav-item">
                             <a href="../templates/payement.html" class="nav-link">
                                 <i class="fa fa-shopping-basket"></i>
                                 <span class="badge badge-primary" id="basket-count">0</span>
