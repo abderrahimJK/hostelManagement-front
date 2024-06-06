@@ -19,14 +19,14 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link active" href="./ahotel.html">Hotels</a>
+                    <li class="nav-item ">
+                      <a class="nav-link " href="./ahotel.html">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./arestaurant.html">Restaurants</a>
+                        <a class="nav-link active" href="./arestaurant.html">Restaurants</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./aactivitie.html">Activities</a>
+                        <a class="nav-link"  href="./aactivitie.html">Activities</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="./aguides.html">Guides</a>
@@ -45,28 +45,28 @@
                     </ul>
                 </div>
                 
+                
               </div>
             </div>
           </nav>
-        
-        <div>
+          <div>
 
             
             <div class="container pt-5">
-                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-hotel.html';">Add Hotel</button>
+                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-restau.html';">Add Restaurant</button>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Location</th>
-                            <th>Description</th>            
+                            <th>Cuisine</th>            
                             <th>Rating</th>            
                             <th>Price</th>            
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="hotelTableBody">
+                    <tbody id="restauTableBody">
                         <!-- Hotels will be dynamically added here -->
                     </tbody>
                 </table>
@@ -74,34 +74,34 @@
 
             <script>
                 // Fetch hotels from the server
-                fetch('http://localhost:8090/hotel/all')
+                fetch('http://localhost:8090/restaurant/all')
                     .then(response => response.json())
                     .then(data => {
-                        const hotelTableBody = document.getElementById('hotelTableBody');
-                        data.forEach(hotel => {
+                        const restauTableBody = document.getElementById('restauTableBody');
+                        data.forEach(restau => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${hotel.id}</td>
-                                <td>${hotel.name}</td>
-                                <td>${hotel.location}</td>
-                                <td>${hotel.description}</td>
-                                <td>${hotel.rating}</td>
-                                <td>${hotel.price}</td>
+                                <td>${restau.id}</td>
+                                <td>${restau.name}</td>
+                                <td>${restau.location}</td>
+                                <td>${restau.cuisine}</td>
+                                <td>${restau.rating}</td>
+                                <td>${restau.price}</td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-hotel.html?id=${hotel.id}';" >Edit</button>
-                                    <button class="btn btn-danger" onclick="deleteHotel(${hotel.id});">Delete</button>
+                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-restau.html?id=${restau.id}';" >Edit</button>
+                                    <button class="btn btn-danger" onclick="deleterestau(${restau.id});">Delete</button>
                                 </td>
                                 </td>
                             `;
-                            hotelTableBody.appendChild(row);
+                            restauTableBody.appendChild(row);
                         });
                     })
                     .catch(error => {
                         console.error('Error:', error);
                 });
-               //delete Hotel
-                function deleteHotel(id) {
-                 fetch(`http://localhost:8090/hotel/delete/${id}`, {
+               //delete restau
+                function deleterestau(id) {
+                 fetch(`http://localhost:8090/restaurant/delete/${id}`, {
                       method: 'DELETE',
                  })
                  .then(response => response.json())
@@ -114,13 +114,6 @@
                  });}
             </script>
     
-        </div>   
-         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>    
-         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>    
-         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
-            
-        <script>
-        // Add your JavaScript code here
-        </script>
-</body>
+        </div>  
+    </body>
 </html>
