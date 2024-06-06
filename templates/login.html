@@ -146,9 +146,9 @@
 
 		<div class="form-container">
 
-			<div th:if="${param.error}">
+			<div>
 				<div class="error-message">
-					<p>Invalid Username or Password</p>
+					<p id="error-message"></p>
 				</div>
 			</div>
 
@@ -163,11 +163,13 @@
 				<input type="password" id="password" name="password"
 					placeholder="Enter your Password" required>
 
-				<button type="submit">Login</button>
+				<button type="button" onclick="login()">Login</button>
 			</form>
 			<p class="form-footer">Don't have an account? <a href="./register.html">Register</a> here.</p>
 		</div>
 	</div>
+
+<script src="/assets/js/authentication.js"></script>
 </body>
 
 </html>
