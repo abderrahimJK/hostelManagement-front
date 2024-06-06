@@ -21,7 +21,7 @@ async function login() {
 
         if (response.status === 200) {
             console.log(response.json());
-            // window.location.href = './home_admin.html';
+            window.location.href = './home_admin.html';
         } else if (response.status === 401) {
             const p = document.querySelector('#error-message')
             p.innerHTML =  'Username or Password incorrect'
