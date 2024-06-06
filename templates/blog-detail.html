@@ -126,78 +126,100 @@
         </div>
     </div>
     <!-- Navbar End -->
-
-	<!-- Header Start -->
-	<div class="container-fluid page-header">
-		<div class="container">
-			<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">Blog</h3>
-				<div class="d-inline-flex text-white">
-					<p class="m-0 text-uppercase"><a class="text-white" href="">Blog</a></p>
-					<i class="fa fa-angle-double-right pt-1 px-3"></i>
-					<p class="m-0 text-uppercase">New Blog</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Header End -->
-    <!-- Form Start -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+    <!-- Blog Content Start -->
+    <div class="container py-5">
+        <div class="row">
             <div class="col-lg-8">
-                <form >
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                <!-- Blog Post Start -->
+                <div class="card mb-4">
+                    <img src="" class="card-img-top" height="300" alt="Blog Image">
+                    <div class="card-body">
+                        <h2 class="card-title">Blog Title</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc. Sed vitae semper nunc. Nulla facilisi. Sed nec nunc auctor, aliquet nunc nec, lacinia nunc. Nulla facilisi. Sed nec nunc auctor, aliquet nunc nec, lacinia nunc.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="content">Content</label>
-                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control-file" id="image" name="image" >
-                    </div>
-                    <button onclick="saveblog()" class="btn btn-primary" >Add Blog</button>
-                </form>
+                </div>
                 <script>
-                    function saveblog(){
-                        const blog = {
-                                    title: document.getElementById('title').value,
-                                    content: document.getElementById('content').value,
-                                    image:null,
-                                    user:{
-                                        id:1
-                                    }
-                                };
-                                //image to base 64
-                                const file = document.getElementById('image').files[0];
-                                const reader = new FileReader();
-                                reader.readAsDataURL(file);
-                                reader.onload = function () {
-                                    blog.image = reader.result.split(',')[1];
-                                    fetch('http://localhost:8090/blog/save', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify(blog),
-                                    })
-                                    .then(data => {
-                                        window.location.href = './blog.html';
-                                    })
-                                    .catch((error) => {
-                                        window.location.href = './blog.html';
-                                    });
-        
-                                    }
-                  
-                }
+                    // Fetch blog info from backend using id from url
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const blogId = urlParams.get('id');
+
+                    fetch(`http://localhost:8090/blog/${blogId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update the blog content dynamically
+                            cardImage=document.querySelector('.card-img-top');
+                            const blogTitle = document.querySelector('.card-title');
+                            const blogText = document.querySelector('.card-text');
+
+                            blogTitle.textContent = data.title;
+                            blogText.textContent = data.content;
+                            cardImage.src = `data:image/png;base64,${data.image}`;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 </script>
+                
+                <!-- Blog Post End -->
+                <!-- Comments Start -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Comments</h3>
+                        <!-- Comment Start -->
+                        <div class="media mb-4">
+                            <img src="/assets/img/user/user-1.jpg" class="mr-3 rounded-circle" alt="User Image">
+                            <div class="media-body">
+                                <h5 class="mt-0">User 1</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
+                            </div>
+                        </div>
+                        <!-- Comment End -->
+                        <!-- Comment Start -->
+                        <div class="media mb-4">
+                            <img src="/assets/img/user/user-2.jpg" class="mr-3 rounded-circle" alt="User Image">
+                            <div class="media-body">
+                                <h5 class="mt-0">User 2</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
+                            </div>
+                        </div>
+                        <!-- Comment End -->
+                        <!-- Add Comment Start -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Add Comment</h5>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment">Comment</label>
+                                        <textarea class="form-control" id="comment" rows="3" placeholder="Enter your comment"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Add Comment End -->
+                    </div>
+                </div>
+                <!-- Comments End -->
+            </div>
+            <div class="col-lg-4">
+                <!-- Sidebar Start -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sidebar</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien non aliquam tincidunt, tellus elit tincidunt enim, a ultrices nunc elit nec nunc.</p>
+                    </div>
+                </div>
+                <!-- Sidebar End -->
             </div>
         </div>
-     
     </div>
-    <!-- Form End -->
+    <!-- Blog Content End -->
+	
+
+
 </body>
 </html>
