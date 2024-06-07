@@ -14,6 +14,13 @@ function getRestaurant() {
 // Call the getHotels function
 const hotels = getRestaurant();
 hotels.then(data => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const destination = urlParams.get('destination');
+   
+    if(destination){
+        console.log(destination);
+        data = data.filter(hotel => hotel.location.toLowerCase() == destination.toLowerCase());
+    }
     console.log(data);
     data.forEach(restaurant => {
     const hotelItem = document.createElement('div');

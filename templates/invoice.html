@@ -8,6 +8,7 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
     <link href="/assetsimg/favicon.ico" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +21,6 @@
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <script src="../assets/js/verify.js"></script>
-    
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -57,7 +56,6 @@
     </div>
     <!-- Topbar End -->
     <!-- Navbar Start -->
-    <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
@@ -84,7 +82,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font  onclick="logout()" color=black>Déconnexion</font>
+                                                <font onclick="logout()" color=black>Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -103,22 +101,77 @@
         </div>
     </div>
     <!-- Navbar End -->
-    <!-- Navbar End -->
-     <!-- Packages Start -->
-     <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Hotels</h6>
-                <h1>Parfaits Hotels Touristiques</h1>
-            </div>
-            <div class="row hotel-data">
 
-           <script src="../assets/js/hotels.js"></script>   
-            
+    <!-- Invoice Start -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Invoice</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 invoice-customer">
+                                <h5>Customer Information</h5>
+                            </div>
+                            <div class="col-md-6 invoice-detail">
+                                <h5>Invoice Details</h5>
+                                <p>Invoice Number: INV-001</p>
+                                <p>Total Amount: $100.00</p>
+                            </div>
+                        </div>
+                    
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Packages End -->
 
+    <script>
+        //get info of user from local storage
+        var user = JSON.parse(localStorage.getItem('user'));
+        //create element html and append it in invoice
+        p = document.createElement('p');
+        p.innerHTML = 'Name: ' + user.fullName;
+        document.querySelector('.invoice-customer').appendChild(p);
+        p = document.createElement('p');
+        p.innerHTML = 'Date: ' + new Date().toISOString().slice(0, 10);
+        document.querySelector('.invoice-detail').appendChild(p);
+        totalPrice=0;
+        user_id=user.id;
+        fetch('http://localhost:8090/booking/user/'+user_id)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(element => {
+                    
+                    if(element.hotels.length>0){
+                        
+                        totalPrice+=element.totalPrice;
+                    }
+                    
+                    if(element.restaurants.length>0){
+                        totalPrice+=element.totalPrice;
+
+                    }
+                    if(element.activities.length>0){
+                        totalPrice+=element.totalPrice;
+                    }
+                    if(element.guides.length>0){
+                        totalPrice+=element.totalPrice;
+                    }
+                });
+                    p=document.createElement('h5');
+                    p.innerHTML = 'Total Amount: ' + totalPrice;
+                    document.querySelector('.invoice-detail').appendChild(p);
+                                                           
+            })
+            .catch(error => {});
+
+
+
+    </script>
+    <!-- Invoice End -->
 </body>
 </html>

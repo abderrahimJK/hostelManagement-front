@@ -153,7 +153,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font color=black>Déconnexion</font>
+                                                <font color=black onclick="logout()">Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -225,6 +225,7 @@
                                         <option selected disabled>Type</option>
                                         <option value="hotel">Hotel</option>
                                         <option value="restaurant">Restaurant</option>
+                                        <option value="guide">Guide</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 mb-3 mb-md-0">
@@ -252,12 +253,31 @@
                         </div>
                         <div class="col-md-2 mt-2 mt-md-0">
                             <script>
-                                function showHotels() {
-                                    var destination = document.querySelector('select[name="destination"]').value;
-                                    window.location.href='./hotels.html?destination=' + destination;
+                                function showOne(){
+                                    var type = document.querySelector('select[name="type"]').value;
+                                    destination = document.querySelector('select[name="destination"]').value;
+                                    if(type === 'hotel'){
+                                        if(destination === 'Destination'){
+                                            window.location.href='./hotels.html';
+                                            return;
+                                        }
+                                        window.location.href='./hotels.html?destination=' + destination;
+                                    }else if(type === 'restaurant'){
+                                        if(destination === 'Destination'){
+                                            window.location.href='./restaurant.html';
+                                            return;
+                                        }
+                                        window.location.href='./restaurant.html?destination=' + destination;
+                                    }else if(type === 'guide'){
+                                        if(destination === 'Destination'){
+                                            window.location.href='./guide.html';
+                                            return;
+                                        }
+                                        window.location.href='./guide.html?destination=' + destination;
+                                    }
                                 }
                             </script>
-                            <button class="btn btn-primary btn-block" type="button" style="height: 47px;" onclick="showHotels()">Chercher</button>
+                            <button class="btn btn-primary btn-block" type="button" style="height: 47px;" onclick="showOne()">Chercher</button>
                         </div>
                     </div>
                 </form>
@@ -411,9 +431,7 @@
                 <h1>Parfaits Forfaits Touristiques</h1>
             </div>
             <div class="row hotel-data">
-                <script src="../assets/js/hotels.js">
-                    
-                </script>
+                
             <div class="row" id="touristicPlansContainer">
             </div>
         </div>

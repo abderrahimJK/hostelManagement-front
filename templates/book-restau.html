@@ -21,8 +21,8 @@
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <script src="verify.js"></script>
 
+    <script src="../assets/js/verify.js"></script>
     <!-- Topbar Start -->
 
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
@@ -130,6 +130,7 @@
                                     const price=Number(document.getElementById('restau-price').textContent);
                                     const urlParams = new URLSearchParams(window.location.search);
                                     const restauId = urlParams.get('id');
+                                    user_id=JSON.parse(localStorage.getItem('user')).id;
                                     // Create an object with the form data
                                     const formData = {
                                         numberOfPersons: Number(guests),
@@ -141,7 +142,7 @@
                                         ]
                                         ,
                                         user: {
-                                            id: 1
+                                            id: user_id
                                         }
                                     };
                                     

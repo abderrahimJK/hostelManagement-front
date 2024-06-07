@@ -44,8 +44,8 @@
 </head>
 
 <body>
-    <script src="verify.js"></script>
 
+    <script src="../assets/js/verify.js"></script>
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light pt-3 d-none d-lg-block">
 		<div class="container">
@@ -109,7 +109,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font color=black>Déconnexion</font>
+                                            <font color=black onclick="logout()">Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -160,19 +160,22 @@
                         <label for="image">Image</label>
                         <input type="file" class="form-control-file" id="image" name="image" >
                     </div>
-                    <button onclick="saveblog()" class="btn btn-primary" >Add Blog</button>
+                    <button type="submit" onclick="saveblog(event)" class="btn btn-primary" >Add Blog</button>
                 </form>
                 <script>
-                    function saveblog(){
+                    function saveblog(event){
+                        event.preventDefault();
+                        user_id=JSON.stringify(localStorage.getItem('user')).id;
                         const blog = {
                                     title: document.getElementById('title').value,
                                     content: document.getElementById('content').value,
                                     image:null,
                                     user:{
-                                        id:1
+                                        id:user_id
                                     }
                                 };
                                 console.log(blog);
+                                alert(blog.title);
                                 //image to base 64
                                 const file = document.getElementById('image').files[0];
                                 const reader = new FileReader();

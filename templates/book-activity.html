@@ -21,8 +21,8 @@
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <script src="verify.js"></script>
 
+    <script src="../assets/js/verify.js"></script>
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -84,7 +84,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font color=black>Déconnexion</font>
+                                            <font color=black onclick="logout()">Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -130,6 +130,7 @@
                                     const urlParams = new URLSearchParams(window.location.search);
                                     const activityId = urlParams.get('id');
                                     // Create an object with the form data
+                                    user_id=JSON.parse(localStorage.getItem('user')).id;
                                     const formData = {
                                         numberOfPersons: Number(guests),
                                         totalPrice: Number(guests) * price,
@@ -140,7 +141,7 @@
                                         ]
                                         ,
                                         user: {
-                                            id: 1
+                                            id: user_id
                                         }
                                     };
                                     
