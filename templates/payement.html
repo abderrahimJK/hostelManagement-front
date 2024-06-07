@@ -82,7 +82,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font color=black>Déconnexion</font>
+                                                <font onclick="logout()" color=black>Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                         </select>
                     </div>
                     <div id="cashPayment" class="text-center">
-                        <button class="btn btn-primary" onclick="redirectToCongratulation()">Pay with Cash</button>
+                        <button class="btn btn-primary" onclick="redirectToCongratulation(event)">Pay with Cash</button>
                     </div>
                     <div id="cardPayment" style="display: none;">
                         <form>
@@ -131,7 +131,7 @@
                                 <label for="cvv">CVV:</label>
                                 <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
                             </div>
-                            <button type="submit" class="btn btn-primary">Pay with Card</button>
+                            <button type="submit" onclick="redirectToCongratulation(event)" class="btn btn-primary">Pay with Card</button>
                         </form>
                     </div>
                 </div>
@@ -150,9 +150,9 @@
                 }
             }
 
-            function redirectToCongratulation() {
-                document.getElementById("congratulationPage").style.display = "block";
-                window.location.href = "/congratulation.html";
+            function redirectToCongratulation(event) {
+                event.preventDefault();
+                window.location.href = "./invoice.html";
             }
         </script>
         <!-- Booking Items Start -->
@@ -176,16 +176,24 @@
                             <p class="card-text" id="location-activity"></p>
                             <p class="card-text" id="description-activity"></p>
                             <p class="card-text" id="price-activity"></p>
+                            <hr>
+                            <h5 class="card-title" id="title-guide"></h5>
+                            <p class="card-text" id="location-guide"></p>
+                            <p class="card-text" id="description-guide"></p>
+                            <p class="card-text" id="price-guide"></p>
+                            
 
                             <script>
                                 // Make an AJAX request to the backend to get the booking item information
                                 function getBookingItem() {
+                                    user_id=JSON.parse(localStorage.getItem('user')).id;
                                     // Replace 'backend-url' with the actual URL of your backend API
-                                    fetch('http://localhost:8090/booking/user/1')
+                                    fetch('http://localhost:8090/booking/user/'+user_id)
                                         .then(response => response.json())
                                         .then(data => {
                                             console.log(data);
                                             data.forEach(element => {
+                                                console.log(element.guides);
                                                 if(element.hotels.length>0){
                                                     document.getElementById('title').textContent="Hotel "+element.hotels[0].name;
                                                     document.getElementById('check-in').textContent = 'Check-in Date: ' + element.startDate;
@@ -206,7 +214,21 @@
                                                     document.getElementById('location-activity').textContent = 'Location: ' + element.activities[0].location;
                                                     document.getElementById('description-activity').textContent = 'Description: ' + element.activities[0].description;
                                                     document.getElementById('price-activity').textContent = 'Total Price: ' + element.totalPrice+" MAD";
-                                                }});
+                                                }
+                                                if(element.guides.length>0){
+                                                    
+                                                    document.getElementById('title-guide').textContent=element.guides[0].name;
+                                                    document.getElementById('location-guide').textContent = 'Location: ' + element.guides[0].address;
+                                                    document.getElementById('price-guide').textContent = 'Total Price: ' + element.totalPrice+" MAD";
+                                                }
+                                                if(element.hotels.length==0 && element.restaurants.length==0 && element.activities.length==0 && element.guides.length==0){
+                                                    Swal.fire({
+                                                        icon: 'error',
+                                                        title: 'Oops...',
+                                                        text: 'You have no booking items!'
+                                                    });
+                                                }
+                                            });
                                                 
                                             
                                         })

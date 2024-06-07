@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Hotels</title>
-    <meta charset="utf-8">
-    <title>Explore Morocco</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-    <link href="/assetsimg/favicon.ico" rel="icon">
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <!-- Libraries Stylesheet -->
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <script src="../assets/js/verify.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <title>Explore Morocco</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free HTML Templates" name="keywords">
+        <meta content="Free HTML Templates" name="description">
     
+        <!-- Favicon -->
+        <link href="/assets/img/favicon.ico" rel="icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
+        <!-- Libraries Stylesheet -->
+        <link href="/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="/assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <style>
+            .span-text {
+                color: white;
+            }
+    
+            .span-text a {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+                /* Add cursor pointer */
+            }
+    
+            .span-text a:hover {
+                color: lightgray;
+                /* Change color on hover */
+            }
+        </style>
+    </head>
+<body>
+
+    <script src="../assets/js/verify.js"></script>
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -84,7 +108,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font  onclick="logout()" color=black>Déconnexion</font>
+                                                <font   onclick="logout()" color=black>Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>
@@ -103,18 +127,18 @@
         </div>
     </div>
     <!-- Navbar End -->
+    
     <!-- Navbar End -->
      <!-- Packages Start -->
      <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Hotels</h6>
-                <h1>Parfaits Hotels Touristiques</h1>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Guides</h6>
+                <h1>Guide Touristique</h1>
             </div>
             <div class="row hotel-data">
 
-           <script src="../assets/js/hotels.js"></script>   
-            
+           <script src="../assets/js/guide.js"></script>
             </div>
         </div>
     </div>

@@ -21,8 +21,8 @@
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <script src="verify.js"></script>
 
+    <script src="../assets/js/verify.js"></script>
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -141,7 +141,9 @@
                                     const guests = document.getElementById('guests').value;
                                     const message = document.getElementById('message').value;
                                     const price=Number(document.getElementById('hotel-price').textContent);
-
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const hotelId = urlParams.get('id');
+                                    user_id=JSON.parse(localStorage.getItem('user')).id;
                                     // Create an object with the form data
                                     const formData = {
                                         startDate: checkIn,
@@ -151,13 +153,13 @@
                                         message: message,
                                         hotels:[
                                             {
-                                                id: 2
+                                                id: hotelId
                                             }
                                         ]
                                            
                                         ,
                                         user: {
-                                            id: 1
+                                            id: user_id
                                         },
                                     };
                                     
@@ -179,7 +181,7 @@
                                                 ).then(() => {
                                                     const basketCount = document.getElementById('basket-count');
                                                     basketCount.textContent = Number(basketCount.textContent) + 1;
-                                                    //window.location.href = '/index.html';
+                                                    window.location.href = './index.html';
                                                 });
 
                                                 
@@ -188,10 +190,19 @@
                                                     'Error!',
                                                     'Booking failed',
                                                     'error'
-                                                );
+                                                ).then(() => {
+                                                    window.location.href = './index.html';
+                                                });
+                                                window.location.href = './index.html';
                                             }})
                                     } catch (error) {
-                                        console.error('Error:', error);
+                                        Swal.fire(
+                                                    'Error!',
+                                                    'Booking failed',
+                                                    'error')
+                                                .then(() => {
+                                                    window.location.href = './index.html';
+                                                });
                                     }
                                 }
                             </script>

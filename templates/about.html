@@ -44,6 +44,8 @@
 </head>
 
 <body>
+
+    <script src="../assets/js/verify.js"></script>
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -103,7 +105,7 @@
                                 <div class="dropdown-item">
                                     <div class="span-text">
                                         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">
-                                                <font color=black>Déconnexion</font>
+											<font color=black onclick="logout()">Déconnexion</font>
                                             </a></span>
                                     </div>
                                 </div>

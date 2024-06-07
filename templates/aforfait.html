@@ -6,13 +6,11 @@
     <style>        /* Add your custom CSS styles here */
     </style>
     </head>
-    <body>  
-      <script src="verify.js"></script>
-
-      <script src="../assets/js/verify.js"></script>  
+    <body>    
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         
+        <script src="../assets/js/verify.js"></script>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Dashboard</a>
@@ -23,89 +21,86 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                      <a class="nav-link " href="./ahotel.html">Hotels</a>
+                      <a class="nav-link" href="./ahotel.html">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./arestaurant.html">Restaurants</a>
+                        <a class="nav-link" href="./arestaurant.html">Restaurants</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link"  href="./aactivitie.html">Activities</a>
+                        <a class="nav-link "  href="./aactivitie.html">Activities</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./aguides.html">Guides</a>
+                        <a class="nav-link " href="./aguides.html">Guides</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link  " href="./aforfait.html">Forfaits</a>
+                        <a class="nav-link  active" href="./aforfait.html">Forfaits</a>
                       </li>
                   </ul>
                 </ul>
                 <div class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    User
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="./login.html">Logout</a></li>
-                  </ul>
-              </div>
-                
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      User
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+                </div>
                 
               </div>
             </div>
           </nav>
-          <div>
+        
+        <div>
 
             
             <div class="container pt-5">
-                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-restau.html';">Add Restaurant</button>
+                <button class="btn btn-success mb-2" onclick="window.location.href = 'add-activity.html';">Add Activity</button>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Location</th>
-                            <th>Cuisine</th>            
-                            <th>Rating</th>            
-                            <th>Price</th>            
+                            <th>Description</th>   
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="restauTableBody">
-                        <!-- Hotels will be dynamically added here -->
+                    <tbody id="activityTableBody">
+                        <!-- activitys will be dynamically added here -->
                     </tbody>
                 </table>
             </div>
 
             <script>
-                // Fetch hotels from the server
-                fetch('http://localhost:8090/restaurant/all')
+                // Fetch activitys from the server
+                fetch('http://localhost:8090/activity/all')
                     .then(response => response.json())
                     .then(data => {
-                        const restauTableBody = document.getElementById('restauTableBody');
-                        data.forEach(restau => {
+                        console.log(data);
+                        const activityTableBody = document.getElementById('activityTableBody');
+                        data.forEach(activity => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${restau.id}</td>
-                                <td>${restau.name}</td>
-                                <td>${restau.location}</td>
-                                <td>${restau.cuisine}</td>
-                                <td>${restau.rating}</td>
-                                <td>${restau.price}</td>
+                                <td>${activity.id}</td>
+                                <td>${activity.name}</td>
+                                <td>${activity.location}</td>
+                                <td>${activity.description}</td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-restau.html?id=${restau.id}';" >Edit</button>
-                                    <button class="btn btn-danger" onclick="deleterestau(${restau.id});">Delete</button>
+                                    <button class="btn btn-primary" onclick="window.location.href = 'edit-activity.html?id=${activity.id}';" >Edit</button>
+                                    <button class="btn btn-danger" onclick="deleteactivity(${activity.id});">Delete</button>
                                 </td>
                                 </td>
                             `;
-                            restauTableBody.appendChild(row);
+                            activityTableBody.appendChild(row);
                         });
                     })
                     .catch(error => {
                         console.error('Error:', error);
                 });
-               //delete restau
-                function deleterestau(id) {
-                 fetch(`http://localhost:8090/restaurant/delete/${id}`, {
-                      method: 'DELETE',
+               //delete activity
+                function deleteactivity(id) {
+                 fetch(`http://localhost:8090/activity/delete/${id}`, {
+                      method: 'GET',
                  })
                  .then(response => response.json())
                  .then(data => {
@@ -117,6 +112,13 @@
                  });}
             </script>
     
-        </div>  
-    </body>
+        </div>   
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>    
+         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>    
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+            
+        <script>
+        // Add your JavaScript code here
+        </script>
+</body>
 </html>

@@ -14,7 +14,6 @@ function getActivities() {
 // Call the getactivity function
 const activity = getActivities();
 activity.then(data => {
-    console.log(data);
     data.forEach(activite=> {
         const activityItem = document.createElement('div');
         activityItem.classList.add("col-lg-4", "col-md-6" ,"mb-4");
